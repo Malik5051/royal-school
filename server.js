@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = parseInt(process.envPORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 const ROOT = __dirname;
 const PUBLIC = path.join(ROOT, 'public');

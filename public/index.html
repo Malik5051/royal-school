@@ -763,6 +763,47 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   .hdr,.rcol,.navrow,.navlist,.cta{background:transparent!important}
   .navlist{box-shadow:none!important}
 }
+
+/* Mobile legibility: keep the menu clear of the headline and show a frame while video loads. */
+.hero-poster{display:block;z-index:0}
+.hero-video{z-index:1}
+.hero::before{z-index:2}
+.hero::after{z-index:3}
+.hero-text{z-index:4}
+@media(max-width:700px){
+  .hdr{padding:10px 14px 8px;gap:6px}
+  .brand{gap:8px}
+  .badge .crest{height:42px}
+  .brand-1{font-size:19px;letter-spacing:.1em}
+  .brand-2{font-size:10px;letter-spacing:.15em}
+  .navrow{min-height:50px;padding:2px 0!important;gap:8px!important;border:0!important;background:transparent!important}
+  .navlist{min-height:48px;gap:16px!important;padding:0 118px 0 4px!important;background:transparent!important;box-shadow:none!important}
+  .navlist>li{min-height:48px}
+  .nbtn,.nlink{min-height:48px;font-size:11px!important;font-weight:600;letter-spacing:.075em!important;color:#fff!important;-webkit-text-stroke:.25px rgba(5,17,42,.72);text-shadow:0 2px 4px rgba(0,0,0,.96),0 0 12px rgba(0,0,0,.82)}
+  .nbtn::after,.nlink::after{bottom:1px;height:2px;background:#5bd18d;box-shadow:0 0 9px rgba(48,190,111,.75)}
+  .nbtn:hover,.nbtn[aria-expanded="true"],.nlink:hover,.nlink[aria-current]{color:#fff!important}
+  .cta{min-width:122px;min-height:42px;padding:0 11px;font-size:10px!important;letter-spacing:.1em!important;background:rgba(8,98,79,.38)!important;border-color:rgba(255,255,255,.9);box-shadow:0 2px 12px rgba(0,0,0,.38)}
+  .hero{min-height:680px;min-height:max(680px,100svh);box-sizing:border-box;padding:190px 20px 54px}
+  .hero-text{width:100%;max-width:100%;margin:0;align-items:center}
+  .h-title{font-size:clamp(36px,10vw,48px);line-height:1.02;letter-spacing:-.01em}
+  .hero-line{font-size:clamp(33px,9.5vw,44px)}
+  .hero-line-main{font-size:clamp(38px,10vw,49px)}
+  .hero-sub{max-width:340px;margin-top:18px;font-size:9px;line-height:1.65;letter-spacing:.12em}
+  .hero-cta{margin-top:20px;gap:10px}
+}
+@media(max-width:380px){
+  .navlist{gap:14px!important;padding-right:112px!important}
+  .nbtn,.nlink{font-size:10.5px!important;letter-spacing:.065em!important}
+  .cta{min-width:116px;font-size:9px!important}
+  .hero{padding-top:178px}
+  .h-title{font-size:35px}
+  .hero-line{font-size:32px}
+  .hero-line-main{font-size:37px}
+}
+@media(max-width:700px){
+  .hdr,.rcol,.navrow,.navlist,.cta{background:transparent!important}
+  .navlist{box-shadow:none!important}
+}
 </style>
 </head>
 <body>
