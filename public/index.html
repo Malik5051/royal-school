@@ -818,25 +818,38 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 }
 @media(max-width:380px){.navlist{padding-right:4px!important}}
 
-/* Mobile header: tidy two-row navigation with a full-width tour action. */
+/* Mobile header: brand, visible tour action, and an accessible three-dot menu. */
 @media (max-width:700px) {
-  .hdr { padding:12px 16px 14px; gap:8px; }
-  .rcol { width:100%; flex:1 0 100%; }
-  .navrow { display:flex!important; flex-wrap:wrap!important; overflow:visible!important; gap:6px!important; padding:4px 0 0!important; }
-  .navlist { display:grid!important; position:relative!important; flex:1 0 100%!important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px 8px!important; width:100%!important; padding:0!important; margin:0!important; overflow:visible!important; }
-  .navlist>li { width:auto!important; min-width:0!important; min-height:40px; }
-  .nbtn,.nlink { width:100%!important; min-height:40px!important; justify-content:center!important; padding:4px 2px!important; white-space:normal!important; text-align:center; font-size:10px!important; line-height:1.2; letter-spacing:.07em!important; text-shadow:0 1px 4px rgba(8,22,45,.58)!important; }
-  .chev { display:none!important; }
-  .cta { order:2!important; position:static!important; flex:1 0 100%!important; width:100%!important; min-height:42px!important; margin:2px 0 0!important; background:rgba(8,98,79,.42)!important; box-shadow:0 2px 8px rgba(0,0,0,.16)!important; }
-  .navitem.open .panelwrap { position:fixed!important; top:190px!important; left:12px!important; right:12px!important; z-index:100!important; }
-  .hero { padding-top:230px!important; }
+  .hdr { flex-wrap:wrap; padding:12px 16px 14px; gap:8px; background:linear-gradient(180deg,rgba(8,24,53,.36),rgba(8,24,53,.12)); box-shadow:0 2px 10px rgba(8,24,53,.08); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); }
+  .brand { flex:1 0 100%; gap:9px; }
+  .badge .crest { height:42px; }
+  .brand-1 { font-size:19px; letter-spacing:.1em; }
+  .brand-2 { font-size:10px; letter-spacing:.15em; }
+  .rcol { width:100%; flex:1 0 100%; align-items:stretch; gap:0; }
+  .util { display:none!important; }
+  .navrow { position:relative; display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important; align-items:center; justify-content:flex-end; gap:10px!important; width:100%; min-height:48px; padding:4px 0 0!important; overflow:visible!important; border:0!important; background:transparent!important; }
+  .menu-toggle { display:inline-flex!important; order:2; flex:0 0 44px; width:44px; height:44px; min-height:44px; align-items:center; justify-content:center; padding:0; border:1px solid rgba(255,255,255,.58); border-radius:50%; color:#fff; background:rgba(20,39,78,.42); box-shadow:0 2px 8px rgba(8,24,53,.12); cursor:pointer; }
+  .menu-dots { display:flex; flex-direction:column; gap:3px; }
+  .menu-dots i { display:block; width:3px; height:3px; border-radius:50%; background:#fff; }
+  .menu-toggle[aria-expanded="true"] { background:rgba(8,98,79,.86); border-color:rgba(255,255,255,.8); }
+  .cta { order:1!important; position:static!important; flex:0 0 auto!important; width:auto!important; min-width:146px; min-height:44px!important; margin:0!important; padding:0 16px!important; border:1px solid rgba(255,255,255,.86); border-radius:2px; color:#fff; background:rgba(8,126,67,.84)!important; box-shadow:0 2px 8px rgba(8,24,53,.12)!important; font-size:9px!important; letter-spacing:.12em!important; }
+  .navlist { display:none!important; position:absolute!important; top:calc(100% + 10px)!important; right:0!important; left:auto!important; z-index:120!important; flex-direction:column!important; align-items:stretch!important; gap:0!important; width:min(340px,calc(100vw - 32px))!important; max-height:min(70vh,520px); overflow-y:auto!important; padding:8px 14px!important; margin:0!important; border:1px solid rgba(255,255,255,.18); background:rgba(17,34,72,.97)!important; box-shadow:0 12px 28px rgba(8,24,53,.18)!important; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+  .navlist.is-open { display:flex!important; }
+  .navlist>li { width:100%!important; min-width:0!important; border-bottom:1px solid rgba(255,255,255,.13)!important; }
+  .navlist>li:last-child { border-bottom:0!important; }
+  .nbtn,.nlink { display:flex; width:100%!important; min-height:48px!important; justify-content:space-between!important; padding:0 4px!important; color:#fff!important; font-size:11px!important; font-weight:500!important; letter-spacing:.11em!important; text-shadow:0 1px 3px rgba(0,0,0,.28)!important; }
+  .chev { display:inline-block!important; }
+  .panelwrap { position:static!important; display:none; width:100%!important; min-width:0!important; padding:0!important; opacity:1!important; visibility:visible!important; transform:none!important; }
+  .navitem.open .panelwrap { display:block!important; }
+  .panel { padding:3px 0 8px!important; border-top:1px solid rgba(255,255,255,.18)!important; background:rgba(255,255,255,.04)!important; box-shadow:none!important; }
+  .plink { min-height:42px; padding:10px 14px!important; color:rgba(255,255,255,.84)!important; font-size:12px; }
+  .hero { padding:64px 20px 54px!important; }
 }
 @media (max-width:380px) {
-  .navlist { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .navitem.open .panelwrap { top:218px!important; }
-  .hero { padding-top:250px!important; }
-}
-</style>
+  .hdr { padding-left:12px; padding-right:12px; }
+  .brand-1 { font-size:18px; }
+  .cta { min-width:136px; }
+}</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -851,6 +864,7 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 <div class="rcol">
 
 <nav class="navrow" aria-label="Main navigation">
+<button class="menu-toggle" type="button" aria-controls="navlist" aria-expanded="false" aria-label="Open navigation menu"><span class="menu-dots" aria-hidden="true"><i></i><i></i><i></i></span></button>
 <ul class="navlist" id="navlist">
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">About Us <span class="chev" aria-hidden="true">⌄</span></button><div class="panelwrap"><div class="panel"><a class="plink" href="#about">Welcome to Royal</a><a class="plink" href="#philosophy">Our approach</a><a class="plink" href="#contact">Visit the school</a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Admissions <span class="chev" aria-hidden="true">⌄</span></button><div class="panelwrap"><div class="panel"><a class="plink" href="admission.html">Apply for admission</a><a class="plink" href="admission.html#tour">Book a campus tour</a></div></div></li>
@@ -1081,5 +1095,29 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   video.addEventListener('error', showPoster, { once: true });
 })();
 </script>
-</body>
+<script>
+(() => {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('navlist');
+  if (!toggle || !menu) return;
+  const closeMenu = () => {
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+  };
+  toggle.addEventListener('click', () => {
+    const open = !menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+  document.addEventListener('click', event => {
+    if (!menu.contains(event.target) && !toggle.contains(event.target)) closeMenu();
+  });
+  menu.addEventListener('click', event => {
+    if (event.target.closest('.plink,.nlink')) closeMenu();
+  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+})();
+</script></body>
 </html>
