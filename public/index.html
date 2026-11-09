@@ -818,37 +818,40 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 }
 @media(max-width:380px){.navlist{padding-right:4px!important}}
 
-/* Mobile header: brand, visible tour action, and an accessible three-dot menu. */
+/* Mobile header: one clean brand row; all destinations live in the three-dot menu. */
+.mobile-tour-item { display:none; }
 @media (max-width:700px) {
-  .hdr { flex-wrap:wrap; padding:12px 16px 14px; gap:8px; background:linear-gradient(180deg,rgba(8,24,53,.36),rgba(8,24,53,.12)); box-shadow:0 2px 10px rgba(8,24,53,.08); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); }
-  .brand { flex:1 0 100%; gap:9px; }
-  .badge .crest { height:42px; }
-  .brand-1 { font-size:19px; letter-spacing:.1em; }
-  .brand-2 { font-size:10px; letter-spacing:.15em; }
-  .rcol { width:100%; flex:1 0 100%; align-items:stretch; gap:0; }
+  .hdr { flex-wrap:nowrap; align-items:center; padding:10px 16px; gap:10px; background:linear-gradient(180deg,rgba(8,24,53,.40),rgba(8,24,53,.18)); box-shadow:0 2px 10px rgba(8,24,53,.08); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); }
+  .brand { flex:1 1 auto; min-width:0; gap:8px; }
+  .badge .crest { height:40px; }
+  .brand-1 { font-size:18px; letter-spacing:.09em; }
+  .brand-2 { font-size:9px; letter-spacing:.13em; }
+  .rcol { flex:0 0 auto; width:auto; align-items:flex-end; gap:0; }
   .util { display:none!important; }
-  .navrow { position:relative; display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important; align-items:center; justify-content:flex-end; gap:10px!important; width:100%; min-height:48px; padding:4px 0 0!important; overflow:visible!important; border:0!important; background:transparent!important; }
-  .menu-toggle { display:inline-flex!important; order:2; flex:0 0 44px; width:44px; height:44px; min-height:44px; align-items:center; justify-content:center; padding:0; border:1px solid rgba(255,255,255,.58); border-radius:50%; color:#fff; background:rgba(20,39,78,.42); box-shadow:0 2px 8px rgba(8,24,53,.12); cursor:pointer; }
+  .navrow { position:relative; display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important; align-items:center; justify-content:flex-end; width:44px; min-height:44px; gap:0!important; padding:0!important; overflow:visible!important; border:0!important; background:transparent!important; }
+  .menu-toggle { display:inline-flex!important; order:0; flex:0 0 42px; width:42px; height:42px; min-height:42px; align-items:center; justify-content:center; padding:0; border:1px solid rgba(255,255,255,.62); border-radius:50%; color:#fff; background:rgba(20,39,78,.48); box-shadow:0 2px 8px rgba(8,24,53,.12); cursor:pointer; }
   .menu-dots { display:flex; flex-direction:column; gap:3px; }
   .menu-dots i { display:block; width:3px; height:3px; border-radius:50%; background:#fff; }
-  .menu-toggle[aria-expanded="true"] { background:rgba(8,98,79,.86); border-color:rgba(255,255,255,.8); }
-  .cta { order:1!important; position:static!important; flex:0 0 auto!important; width:auto!important; min-width:146px; min-height:44px!important; margin:0!important; padding:0 16px!important; border:1px solid rgba(255,255,255,.86); border-radius:2px; color:#fff; background:rgba(8,126,67,.84)!important; box-shadow:0 2px 8px rgba(8,24,53,.12)!important; font-size:9px!important; letter-spacing:.12em!important; }
-  .navlist { display:none!important; position:absolute!important; top:calc(100% + 10px)!important; right:0!important; left:auto!important; z-index:120!important; flex-direction:column!important; align-items:stretch!important; gap:0!important; width:min(340px,calc(100vw - 32px))!important; max-height:min(70vh,520px); overflow-y:auto!important; padding:8px 14px!important; margin:0!important; border:1px solid rgba(255,255,255,.18); background:rgba(17,34,72,.97)!important; box-shadow:0 12px 28px rgba(8,24,53,.18)!important; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+  .menu-toggle[aria-expanded="true"] { background:rgba(8,98,79,.9); border-color:rgba(255,255,255,.8); }
+  .navrow>.cta { display:none!important; }
+  .navlist { display:none!important; position:absolute!important; top:calc(100% + 9px)!important; right:-2px!important; left:auto!important; z-index:120!important; flex-direction:column!important; align-items:stretch!important; gap:0!important; width:min(320px,calc(100vw - 24px))!important; max-height:min(72vh,520px); overflow-y:auto!important; padding:8px 14px!important; margin:0!important; border:1px solid rgba(255,255,255,.18); background:rgba(17,34,72,.97)!important; box-shadow:0 12px 28px rgba(8,24,53,.18)!important; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
   .navlist.is-open { display:flex!important; }
   .navlist>li { width:100%!important; min-width:0!important; border-bottom:1px solid rgba(255,255,255,.13)!important; }
   .navlist>li:last-child { border-bottom:0!important; }
-  .nbtn,.nlink { display:flex; width:100%!important; min-height:48px!important; justify-content:space-between!important; padding:0 4px!important; color:#fff!important; font-size:11px!important; font-weight:500!important; letter-spacing:.11em!important; text-shadow:0 1px 3px rgba(0,0,0,.28)!important; }
+  .nbtn,.nlink { display:flex; width:100%!important; min-height:46px!important; justify-content:space-between!important; padding:0 4px!important; color:#fff!important; font-size:11px!important; font-weight:500!important; letter-spacing:.11em!important; text-shadow:0 1px 3px rgba(0,0,0,.28)!important; }
   .chev { display:inline-block!important; }
   .panelwrap { position:static!important; display:none; width:100%!important; min-width:0!important; padding:0!important; opacity:1!important; visibility:visible!important; transform:none!important; }
   .navitem.open .panelwrap { display:block!important; }
   .panel { padding:3px 0 8px!important; border-top:1px solid rgba(255,255,255,.18)!important; background:rgba(255,255,255,.04)!important; box-shadow:none!important; }
-  .plink { min-height:42px; padding:10px 14px!important; color:rgba(255,255,255,.84)!important; font-size:12px; }
+  .plink { min-height:40px; padding:9px 14px!important; color:rgba(255,255,255,.84)!important; font-size:12px; }
+  .mobile-tour-item { display:block; padding:10px 0 2px; }
+  .mobile-tour-item .cta { display:flex; width:100%; min-height:44px; justify-content:center; border:1px solid rgba(255,255,255,.76); border-radius:2px; color:#fff; background:rgba(8,126,67,.92); font-size:10px; letter-spacing:.14em; }
   .hero { padding:64px 20px 54px!important; }
 }
 @media (max-width:380px) {
   .hdr { padding-left:12px; padding-right:12px; }
-  .brand-1 { font-size:18px; }
-  .cta { min-width:136px; }
+  .brand-1 { font-size:17px; }
+  .brand-2 { font-size:8px; }
 }</style>
 </head>
 <body>
@@ -871,6 +874,7 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Curriculum <span class="chev" aria-hidden="true">⌄</span></button><div class="panelwrap"><div class="panel"><a class="plink" href="#curriculum">Preschool</a><a class="plink" href="#curriculum">Primary</a><a class="plink" href="#curriculum">Secondary</a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">School Life <span class="chev" aria-hidden="true">⌄</span></button><div class="panelwrap"><div class="panel"><a class="plink" href="#life">Photo gallery</a><a class="plink" href="#life">Student life</a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Connect With Us <span class="chev" aria-hidden="true">⌄</span></button><div class="panelwrap"><div class="panel"><a class="plink" href="#contact">Contact Royal</a><a class="plink" href="tel:+211927330101">Call +211 927 330 101</a><a class="plink" href="https://wa.me/211927330101" target="_blank" rel="noopener">WhatsApp admissions</a></div></div></li>
+<li class="mobile-tour-item"><a class="cta" href="admission.html#tour">Book a Tour</a></li>
 </ul>
 <a class="cta" href="admission.html#tour">Book a Tour</a>
 </nav>
@@ -1115,7 +1119,7 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
     if (!menu.contains(event.target) && !toggle.contains(event.target)) closeMenu();
   });
   menu.addEventListener('click', event => {
-    if (event.target.closest('.plink,.nlink')) closeMenu();
+    if (event.target.closest('.plink,.nlink,.mobile-tour-item .cta')) closeMenu();
   });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 })();
