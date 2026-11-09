@@ -804,6 +804,19 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   .hdr,.rcol,.navrow,.navlist,.cta{background:transparent!important}
   .navlist{box-shadow:none!important}
 }
+
+/* Mobile corrections: keep the tour action in the nav flow and reveal the clip over its poster. */
+.hero-poster{display:block;z-index:0}
+.hero-video{z-index:1}
+@media(max-width:700px){
+  .navrow{overflow-x:auto;overscroll-behavior-x:contain}
+  .navlist{padding:0 4px!important}
+  .cta{position:static!important;right:auto!important;z-index:auto!important;flex:0 0 auto;margin:0 8px 0 0!important;align-self:center;background:rgba(8,98,79,.28)!important;box-shadow:0 1px 6px rgba(0,0,0,.18)!important}
+  .nbtn,.nlink{color:#fff!important;-webkit-text-stroke:.12px rgba(5,17,42,.32);text-shadow:0 1px 3px rgba(0,0,0,.62),0 0 8px rgba(0,0,0,.38)}
+  .nbtn::after,.nlink::after{box-shadow:0 0 6px rgba(48,190,111,.42)}
+  .hero::after{background:linear-gradient(90deg,rgba(13,29,61,.46),rgba(13,29,61,.2) 62%,rgba(13,29,61,.12)),linear-gradient(0deg,rgba(9,31,48,.18),rgba(16,29,58,.04))}
+}
+@media(max-width:380px){.navlist{padding-right:4px!important}}
 </style>
 </head>
 <body>
@@ -1038,11 +1051,15 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   };
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion || (connection && (connection.saveData || ['2g', 'slow-2g'].includes(connection.effectiveType)))) {
+  if (reduceMotion || (connection && connection.saveData)) {
     showPoster();
     return;
   }
-  video.addEventListener('canplay', () => video.classList.add('is-playing'), { once: true });
+  video.addEventListener('canplay', () => {
+    video.classList.add('is-playing');
+    const playback = video.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(showPoster);
+  }, { once: true });
   video.addEventListener('error', showPoster, { once: true });
 })();
 </script>
