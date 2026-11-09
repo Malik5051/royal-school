@@ -303,15 +303,32 @@ function serveStatic(req, res, pathname) {
       return res.end('<!doctype html><meta charset="utf-8"><title>Not found</title><p style="font-family:sans-serif;padding:40px">Page not found. <a href="/">Go to the home page</a>.</p>');
     }
     const isAdminPage = path.basename(file) === 'admin.html';
-    res.writeHead(200, baseHeaders({
+    const headers = baseHeaders({
       'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
-      'Cache-Control': isAdminPage ? 'no-store' : 'public, max-age=300'
-    }));
+      'Cache-Control': isAdminPage ? 'no-store' : 'public, max-age=300',
+      'Accept-Ranges': 'bytes'
+    });
+    const range = req.headers.range;
+    const match = range && range.match(/^bytes=(\d*)-(\d*)$/);
+    if (match) {
+      const start = match[1] ? Number(match[1]) : Math.max(0, st.size - Number(match[2] || 0));
+      const end = match[2] ? Math.min(Number(match[2]), st.size - 1) : st.size - 1;
+      if (start >= st.size || start > end) {
+        res.writeHead(416, baseHeaders({ 'Content-Range': 'bytes */' + st.size, 'Accept-Ranges': 'bytes' }));
+        return res.end();
+      }
+      headers['Content-Range'] = 'bytes ' + start + '-' + end + '/' + st.size;
+      headers['Content-Length'] = end - start + 1;
+      res.writeHead(206, headers);
+      if (req.method === 'HEAD') return res.end();
+      return fs.createReadStream(file, { start, end }).pipe(res);
+    }
+    headers['Content-Length'] = st.size;
+    res.writeHead(200, headers);
     if (req.method === 'HEAD') return res.end();
     fs.createReadStream(file).pipe(res);
   });
 }
-
 /* ---------- server ---------- */
 const server = http.createServer(async (req, res) => {
   try {

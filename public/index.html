@@ -817,6 +817,25 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   .hero::after{background:linear-gradient(90deg,rgba(13,29,61,.46),rgba(13,29,61,.2) 62%,rgba(13,29,61,.12)),linear-gradient(0deg,rgba(9,31,48,.18),rgba(16,29,58,.04))}
 }
 @media(max-width:380px){.navlist{padding-right:4px!important}}
+
+/* Mobile header: tidy two-row navigation with a full-width tour action. */
+@media (max-width:700px) {
+  .hdr { padding:12px 16px 14px; gap:8px; }
+  .rcol { width:100%; flex:1 0 100%; }
+  .navrow { display:flex!important; flex-wrap:wrap!important; overflow:visible!important; gap:6px!important; padding:4px 0 0!important; }
+  .navlist { display:grid!important; position:relative!important; flex:1 0 100%!important; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px 8px!important; width:100%!important; padding:0!important; margin:0!important; overflow:visible!important; }
+  .navlist>li { width:auto!important; min-width:0!important; min-height:40px; }
+  .nbtn,.nlink { width:100%!important; min-height:40px!important; justify-content:center!important; padding:4px 2px!important; white-space:normal!important; text-align:center; font-size:10px!important; line-height:1.2; letter-spacing:.07em!important; text-shadow:0 1px 4px rgba(8,22,45,.58)!important; }
+  .chev { display:none!important; }
+  .cta { order:2!important; position:static!important; flex:1 0 100%!important; width:100%!important; min-height:42px!important; margin:2px 0 0!important; background:rgba(8,98,79,.42)!important; box-shadow:0 2px 8px rgba(0,0,0,.16)!important; }
+  .navitem.open .panelwrap { position:fixed!important; top:190px!important; left:12px!important; right:12px!important; z-index:100!important; }
+  .hero { padding-top:230px!important; }
+}
+@media (max-width:380px) {
+  .navlist { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .navitem.open .panelwrap { top:218px!important; }
+  .hero { padding-top:250px!important; }
+}
 </style>
 </head>
 <body>
@@ -850,7 +869,6 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 <main id="main">
 <section class="hero" aria-label="Welcome">
 <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true">
-  <source src="assets/hero-loop.webm" type="video/webm">
   <source src="assets/hero-loop.mp4" type="video/mp4">
   <img src="assets/hero-poster.jpg" alt="">
 </video>
