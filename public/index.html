@@ -1140,6 +1140,44 @@ figure.reveal.in figcaption { opacity:1; transform:translateY(0); }
   .life .grid figure,.life .grid figure img,.life .grid figure::after { transition:none!important; }
   .life .grid figure:hover,.life .grid figure:hover img { transform:none!important; filter:none!important; }
 }
+
+/* Level 6: make the footer a clear, useful closing section */
+footer {
+  border-top:2px solid var(--green);
+  background-image:radial-gradient(ellipse at 8% 0%,rgba(8,98,79,.18),transparent 38%),linear-gradient(120deg,#202b59 0%,#1c274f 100%);
+}
+.footer-col .eyebrow {
+  width:100%;
+  padding-bottom:9px;
+  border-bottom:1px solid rgba(255,255,255,.18);
+  letter-spacing:.16em;
+}
+.footer-col a {
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  overflow-wrap:anywhere;
+}
+.footer-cta,.footer-bottom a,.footer-col a { transition:color .2s ease,transform .2s ease,opacity .2s ease; }
+.footer-cta:focus-visible,.footer-bottom a:focus-visible,.footer-col a:focus-visible {
+  outline:2px solid #a8dfbf;
+  outline-offset:4px;
+}
+@media(max-width:520px) {
+  .footer-main {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:24px 18px;
+  }
+  .footer-brand,.footer-main>.footer-col:last-child { grid-column:1/-1; }
+  .footer-main>nav.footer-col { grid-column:1; }
+  .footer-main>.footer-col:nth-last-child(2) { grid-column:2; }
+  .footer-col { gap:8px; font-size:13px; }
+  .footer-col a { min-height:38px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .footer-cta,.footer-bottom a,.footer-col a,.footer-cta::after { transition:none!important; }
+  .footer-col a:hover,.footer-cta:hover::after { transform:none!important; }
+}
 </style>
 </head>
 <body>
