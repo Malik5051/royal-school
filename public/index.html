@@ -1024,6 +1024,74 @@ figure.reveal.in figcaption { opacity:1; transform:translateY(0); }
 .life {
   background-image:radial-gradient(ellipse at 9% 4%,rgba(32,43,89,.035),transparent 40%);
 }
+
+/* Level 4: give each learning stage a distinct, photo-led card */
+.curr .cards {
+  gap:clamp(16px,2vw,26px);
+  border:0;
+}
+.curr .level-card {
+  min-width:0;
+  gap:12px;
+  padding:0 0 24px;
+  border:1px solid rgba(32,43,89,.09);
+  background:#fff;
+  box-shadow:0 1px 0 rgba(32,43,89,.035),0 12px 28px -22px rgba(32,43,89,.28);
+  transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s ease,border-color .24s ease;
+}
+.curr .level-card:first-child { padding-left:0; border-left:1px solid rgba(32,43,89,.09); }
+.curr .level-card .curriculum-photo {
+  height:clamp(180px,18vw,224px);
+  margin:0 0 7px;
+  object-position:center 40%;
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+.curr .level-card .tag {
+  align-self:flex-start;
+  padding:5px 9px;
+  border:1px solid rgba(8,98,79,.14);
+  background:rgba(8,98,79,.055);
+  color:var(--green);
+  font-size:9px;
+  letter-spacing:.14em;
+}
+.curr .level-card h3 { margin-top:2px; color:var(--navy); }
+.curr .level-card p { min-height:3.4em; }
+.curr .level-card .more {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding-bottom:4px;
+  border-bottom:1px solid rgba(8,98,79,.28);
+  transition:color .2s ease,border-color .2s ease;
+}
+.curr .level-card .more::after {
+  content:'→';
+  display:inline-block;
+  transition:transform .22s cubic-bezier(.2,.7,.2,1);
+}
+.curr .level-card:hover {
+  transform:translateY(-4px);
+  border-color:rgba(8,98,79,.28);
+  box-shadow:0 16px 32px -20px rgba(32,43,89,.34);
+}
+.curr .level-card:hover .curriculum-photo { transform:scale(1.035); }
+.curr .level-card:hover .more { color:#064d3f; border-color:var(--green); }
+.curr .level-card:hover .more::after { transform:translateX(3px); }
+.curr .level-card:focus-within { outline:2px solid rgba(8,98,79,.55); outline-offset:3px; }
+@media(max-width:700px) {
+  .curr .cards { gap:14px; }
+  .curr .level-card,.curr .level-card:first-child {
+    padding:0 0 22px;
+    border:1px solid rgba(32,43,89,.09);
+  }
+  .curr .level-card .curriculum-photo { height:210px; }
+  .curr .level-card p { min-height:0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .curr .level-card,.curr .level-card .curriculum-photo,.curr .level-card .more::after { transition:none!important; }
+  .curr .level-card:hover,.curr .level-card:hover .curriculum-photo,.curr .level-card:hover .more::after { transform:none!important; }
+}
 </style>
 </head>
 <body>
