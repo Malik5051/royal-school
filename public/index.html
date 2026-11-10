@@ -958,6 +958,37 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 
 /* Keep portrait sports photography focused on the students and awards. */
 .life .grid figure.gallery-swimming img { object-position:center 34%; }
+
+/* Level 1: polished, restrained interaction feedback */
+@media (hover:hover) and (pointer:fine) {
+  .btn-o,.cta {
+    background-image:linear-gradient(var(--green),var(--green));
+    background-repeat:no-repeat;
+    background-position:left center;
+    background-size:0% 100%;
+    transition:background-size .32s cubic-bezier(.2,.7,.2,1),color .24s ease,border-color .24s ease,transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s ease;
+  }
+  .btn-o:hover,.cta:hover {
+    background-size:100% 100%;
+    border-color:var(--green);
+    color:#fff;
+  }
+  .plink { transition:background-color .2s ease,color .2s ease,padding-left .2s ease; }
+  .plink:hover { padding-left:28px; }
+  .curriculum-link:hover { transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease,border-color .28s ease; }
+}
+.btn-g,.btn-n,.submit {
+  transition:transform .22s cubic-bezier(.2,.7,.2,1),background-color .24s ease,color .24s ease,box-shadow .24s ease,filter .24s ease;
+}
+.btn-g:active,.btn-n:active,.submit:active { filter:brightness(.91); }
+.nbtn,.nlink { transition:color .2s ease,text-shadow .2s ease; }
+.nbtn::after,.nlink::after { transition:transform .26s cubic-bezier(.2,.7,.2,1),background-color .2s ease; }
+@media(prefers-reduced-motion:reduce) {
+  .btn-g,.btn-o,.btn-n,.cta,.btn,.submit,.plink,.nbtn,.nlink,.curriculum-link,
+  .nbtn::after,.nlink::after { transition:none!important; }
+  .btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover,
+  .plink:hover,.curriculum-link:hover { transform:none!important; }
+}
 </style>
 </head>
 <body>
