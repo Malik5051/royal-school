@@ -864,6 +864,26 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 .stat-label { max-width:190px; color:var(--ink); font-family:'Inter',sans-serif; font-size:12px; font-weight:600; line-height:1.45; letter-spacing:.09em; text-transform:uppercase; }
 @media(max-width:900px) { .stats-container { grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 22px; } }
 @media(max-width:500px) { .stats-section { padding:54px 22px; background-attachment:scroll; } .stats-section::after { background-size:260px; opacity:.11; } .stats-container { grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 14px; } .stat-icon { width:40px; height:40px; } .stat-number { font-size:44px; } .stat-label { font-size:10px; letter-spacing:.06em; } }
+
+/* Mobile first fold: compact header and cinematic hero at roughly 62% of viewport height. */
+@media(max-width:700px) {
+  .hwrap { border-top-width:2px; }
+  .hdr { min-height:50px; padding:6px 14px!important; gap:8px!important; }
+  .brand { gap:7px!important; }
+  .badge .crest { height:34px!important; }
+  .brand-name { line-height:.98; }
+  .brand-1 { font-size:16px!important; letter-spacing:.08em!important; }
+  .brand-2 { font-size:8px!important; letter-spacing:.11em!important; }
+  .navrow { min-height:40px!important; }
+  .menu-toggle { width:38px!important; height:38px!important; min-height:38px!important; flex-basis:38px!important; }
+  .hero { height:clamp(380px,62vh,560px)!important; height:clamp(380px,62svh,560px)!important; min-height:0!important; padding:38px 18px!important; }
+}
+@media(max-width:380px) {
+  .hdr { padding-left:11px!important; padding-right:11px!important; }
+  .brand-1 { font-size:15px!important; }
+  .brand-2 { font-size:7.5px!important; }
+  .hero { height:clamp(360px,60vh,500px)!important; height:clamp(360px,60svh,500px)!important; }
+}
 </style>
 </head>
 <body>
