@@ -897,6 +897,13 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 .phil .eyebrow,.phil-col h3 { color:var(--green)!important; }
 .phil-col { border-top-color:rgba(32,43,89,.16)!important; }
 .phil-col p { color:var(--ink)!important; }
+
+/* Mobile: keep the blue header in document flow so the hero video begins below it. */
+@media(max-width:700px) {
+  .hwrap { position:relative!important; top:auto!important; right:auto!important; left:auto!important; z-index:80; background:var(--navy)!important; border-top:2px solid var(--green)!important; border-bottom:1px solid rgba(255,255,255,.14)!important; }
+  .hdr { background:var(--navy)!important; box-shadow:none!important; backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+  .hero { margin-top:0!important; }
+}
 </style>
 </head>
 <body>
