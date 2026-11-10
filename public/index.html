@@ -989,6 +989,23 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   .btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover,
   .plink:hover,.curriculum-link:hover { transform:none!important; }
 }
+
+/* Level 2: editorial photo reveals as sections enter the viewport */
+.reveal>img {
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .85s cubic-bezier(.22,.68,.25,1);
+}
+.reveal.in>img { clip-path:inset(0 0 0 0); }
+figure.reveal figcaption {
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .45s ease .28s,transform .45s cubic-bezier(.2,.7,.2,1) .28s;
+}
+figure.reveal.in figcaption { opacity:1; transform:translateY(0); }
+@media(prefers-reduced-motion:reduce) {
+  .reveal>img { clip-path:none; transition:none!important; }
+  figure.reveal figcaption { opacity:1; transform:none; transition:none!important; }
+}
 </style>
 </head>
 <body>
