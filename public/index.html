@@ -1006,6 +1006,24 @@ figure.reveal.in figcaption { opacity:1; transform:translateY(0); }
   .reveal>img { clip-path:none; transition:none!important; }
   figure.reveal figcaption { opacity:1; transform:none; transition:none!important; }
 }
+
+/* Level 3: subtle tonal continuity between the main homepage sections */
+.about,.curr,.phil,.life {
+  border-top:1px solid transparent;
+  border-image:linear-gradient(90deg,rgba(8,98,79,.24),rgba(32,43,89,.09) 22%,rgba(32,43,89,.09) 78%,rgba(8,98,79,.24)) 1;
+}
+.about {
+  background-image:radial-gradient(ellipse at 92% 12%,rgba(8,98,79,.045),transparent 38%);
+}
+.curr {
+  background-image:linear-gradient(180deg,#fff 0%,rgba(245,244,239,.52) 100%)!important;
+}
+.phil {
+  background-image:radial-gradient(ellipse at 88% 8%,rgba(8,98,79,.035),transparent 42%),linear-gradient(180deg,#fff 0%,#fcfcfa 100%)!important;
+}
+.life {
+  background-image:radial-gradient(ellipse at 9% 4%,rgba(32,43,89,.035),transparent 40%);
+}
 </style>
 </head>
 <body>
