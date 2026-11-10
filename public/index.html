@@ -904,9 +904,30 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   .hdr { background:var(--navy)!important; box-shadow:none!important; backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
   .hero { margin-top:0!important; }
 }
+
+/* Premium motion: restrained, consistent controls and subtle menu motion. */
+.btn-g,.btn-o,.btn-n,.cta,.btn,.submit,.mobile-tour-item .cta { border-radius:3px; font-family:Inter,system-ui,sans-serif; font-weight:600; letter-spacing:.12em; box-shadow:0 2px 8px rgba(18,34,67,.12); transition:transform .22s cubic-bezier(.2,.7,.2,1),background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease; }
+.btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover { transform:translateY(-2px); box-shadow:0 10px 22px -14px rgba(18,34,67,.48),inset 0 1px 0 rgba(255,255,255,.18); }
+.btn-g:hover,.btn-n:hover,.cta:hover,.submit:hover { filter:brightness(.96); }
+.btn-o:hover { background:rgba(255,255,255,.14); color:#fff; border-color:#fff; }
+.btn-g:active,.btn-o:active,.btn-n:active,.cta:active,.btn:active,.submit:active { transform:translateY(0); box-shadow:0 1px 3px rgba(18,34,67,.12); }
+.btn-g:focus-visible,.btn-o:focus-visible,.btn-n:focus-visible,.cta:focus-visible,.btn:focus-visible,.submit:focus-visible,.menu-toggle:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+.scroll-progress { position:fixed; inset:0 auto auto 0; z-index:200; width:100%; height:2px; background:linear-gradient(90deg,var(--green),#37a67e); transform:scaleX(0); transform-origin:left center; pointer-events:none; }
+@media(max-width:700px) {
+  .navlist { display:flex!important; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-8px) scale(.99); transition:opacity .24s cubic-bezier(.2,.7,.2,1),transform .24s cubic-bezier(.2,.7,.2,1),visibility .24s; }
+  .navlist.is-open { display:flex!important; opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1); }
+  .menu-toggle[aria-expanded="true"] .menu-dots i:first-child { transform:translateY(6px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] .menu-dots i:nth-child(2) { opacity:0; }
+  .menu-toggle[aria-expanded="true"] .menu-dots i:last-child { transform:translateY(-6px) rotate(-45deg); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .scroll-progress { display:none; }
+  .navlist { transition:none!important; transform:none!important; }
+}
 </style>
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="hwrap" id="top">
@@ -1157,7 +1178,7 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 <script>
 (function () {
   if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var els = document.querySelectorAll('.strip-col,.about-text,dl.facts,.curr-head,.card,.curr-cta,.phil-col,.life h2,figure,.apply-hero,.form-card,.aside-box');
+  var els = document.querySelectorAll('.strip-col,.about-text,dl.facts,.curr-head,.card,.curr-cta,.phil-col,.stat-item,.life h2,figure,.apply-hero,.form-card,.aside-box');
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
@@ -1196,17 +1217,16 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.getElementById('navlist');
   if (!toggle || !menu) return;
-  const closeMenu = () => {
-    menu.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Open navigation menu');
-  };
-  toggle.addEventListener('click', () => {
-    const open = !menu.classList.contains('is-open');
+  const setMenuOpen = (open) => {
     menu.classList.toggle('is-open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    menu.inert = !open;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
-  });
+  };
+  const closeMenu = () => setMenuOpen(false);
+  setMenuOpen(false);
+  toggle.addEventListener('click', () => setMenuOpen(!menu.classList.contains('is-open')));
   document.addEventListener('click', event => {
     if (!menu.contains(event.target) && !toggle.contains(event.target)) closeMenu();
   });
@@ -1214,6 +1234,47 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
     if (event.target.closest('.plink,.nlink,.mobile-tour-item .cta')) closeMenu();
   });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+})();;
+</script><script>
+(() => {
+  const bar = document.querySelector('.scroll-progress');
+  if (bar) {
+    let queued = false;
+    const paintProgress = () => {
+      const root = document.documentElement;
+      const range = root.scrollHeight - root.clientHeight;
+      bar.style.transform = 'scaleX(' + (range > 0 ? root.scrollTop / range : 0) + ')';
+      queued = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!queued) { queued = true; requestAnimationFrame(paintProgress); }
+    }, { passive:true });
+    paintProgress();
+  }
+  const numbers = document.querySelectorAll('.stat-number');
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!numbers.length || reduced || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      const node = entry.target;
+      const match = node.textContent.trim().match(/^(\d+)(.*)$/);
+      if (!match) return;
+      const target = Number(match[1]);
+      const suffix = match[2];
+      let startTime;
+      const step = now => {
+        if (startTime === undefined) startTime = now;
+        const progress = Math.min((now - startTime) / 850, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        node.textContent = Math.round(target * eased).toLocaleString('en') + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold:.55 });
+  numbers.forEach(node => observer.observe(node));
 })();
 </script></body>
 </html>
