@@ -1092,6 +1092,54 @@ figure.reveal.in figcaption { opacity:1; transform:translateY(0); }
   .curr .level-card,.curr .level-card .curriculum-photo,.curr .level-card .more::after { transition:none!important; }
   .curr .level-card:hover,.curr .level-card:hover .curriculum-photo,.curr .level-card:hover .more::after { transform:none!important; }
 }
+
+/* Level 5: shape the gallery into a polished photo story */
+.life .grid figure {
+  border:1px solid rgba(32,43,89,.12);
+  background:#e8e9e6;
+  box-shadow:0 2px 14px -10px rgba(32,43,89,.32);
+  isolation:isolate;
+  transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s ease,border-color .24s ease;
+}
+.life .grid figure img {
+  display:block;
+  transform:scale(1.001);
+  transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .35s ease;
+}
+.life .grid figure::after {
+  content:'';
+  position:absolute;
+  z-index:2;
+  left:18px;
+  bottom:0;
+  width:42px;
+  height:3px;
+  background:linear-gradient(90deg,var(--green),#48a47c);
+  transition:width .32s cubic-bezier(.2,.7,.2,1);
+}
+.life .grid figcaption {
+  z-index:1;
+  padding:48px 18px 18px;
+  letter-spacing:.13em;
+  text-shadow:0 1px 8px rgba(8,19,43,.22);
+}
+@media(min-width:701px) and (max-width:960px) {
+  .life .grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:clamp(210px,28vw,270px); }
+  .life .grid figure:first-child { grid-column:span 2; grid-row:span 1; }
+}
+@media(hover:hover) and (pointer:fine) {
+  .life .grid figure:hover {
+    transform:translateY(-3px);
+    border-color:rgba(8,98,79,.36);
+    box-shadow:0 14px 28px -18px rgba(32,43,89,.38);
+  }
+  .life .grid figure:hover img { transform:scale(1.055); filter:saturate(1.04); }
+  .life .grid figure:hover::after { width:calc(100% - 36px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .life .grid figure,.life .grid figure img,.life .grid figure::after { transition:none!important; }
+  .life .grid figure:hover,.life .grid figure:hover img { transform:none!important; filter:none!important; }
+}
 </style>
 </head>
 <body>
