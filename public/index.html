@@ -889,6 +889,14 @@ dl.facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1
 .phil { position:relative; isolation:isolate; background:var(--navy); }
 .phil::before { content:''; position:absolute; top:0; left:0; right:0; z-index:0; height:clamp(76px,9vw,116px); background:linear-gradient(180deg,var(--paper) 0%,rgba(245,244,239,.92) 18%,rgba(245,244,239,.62) 45%,rgba(8,98,79,.16) 78%,var(--navy) 100%); pointer-events:none; }
 .phil>* { position:relative; z-index:1; }
+
+/* Keep the Philosophy section on the same clean white canvas as the page. */
+.phil { background:#fff!important; color:var(--ink)!important; }
+.phil::before { display:none!important; }
+.phil h2 { color:var(--navy)!important; }
+.phil .eyebrow,.phil-col h3 { color:var(--green)!important; }
+.phil-col { border-top-color:rgba(32,43,89,.16)!important; }
+.phil-col p { color:var(--ink)!important; }
 </style>
 </head>
 <body>
