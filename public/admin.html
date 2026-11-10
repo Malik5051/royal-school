@@ -146,7 +146,42 @@ figure::after{content:"";position:absolute;inset:0;pointer-events:none;box-shado
 .card,.form-card{border:1px solid rgba(32,43,89,.06)!important}
 .hero::after{box-shadow:inset 0 0 0 4px rgba(32,43,89,.14)!important}
 figure::after{box-shadow:inset 0 0 0 1px rgba(32,43,89,.08)!important}
-.hero-cta .btn-g:hover{filter:brightness(.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)!important}</style>
+.hero-cta .btn-g:hover{filter:brightness(.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)!important}
+/* Level 7: consistent, accessible action buttons across the site */
+.btn-g,.btn-o,.btn-n,.cta,.btn,.submit {
+  min-height:46px;
+  border-radius:3px;
+  font-family:Inter,system-ui,sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  line-height:1.2;
+  text-decoration:none;
+  transition:transform .22s cubic-bezier(.2,.7,.2,1),background-color .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease,filter .24s ease;
+}
+.btn-g,.btn-n,.btn,.submit { box-shadow:0 1px 0 rgba(255,255,255,.16) inset,0 5px 14px -10px rgba(7,27,46,.52); }
+@media(hover:hover) and (pointer:fine) {
+  .btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover {
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px -15px rgba(7,27,46,.48),0 1px 0 rgba(255,255,255,.18) inset;
+  }
+  .btn-g:hover,.btn-n:hover,.submit:hover,.btn:not(.line):not(.red):hover { filter:brightness(.96); }
+  .btn.red:hover { filter:brightness(.94); }
+}
+.btn-g:active,.btn-o:active,.btn-n:active,.cta:active,.btn:active,.submit:active {
+  transform:translateY(0);
+  box-shadow:0 1px 3px rgba(7,27,46,.18) inset;
+}
+.btn-g:focus-visible,.btn-o:focus-visible,.btn-n:focus-visible,.cta:focus-visible,.btn:focus-visible,.submit:focus-visible {
+  outline:2px solid #8bd1a9;
+  outline-offset:3px;
+}
+.btn:disabled,.submit:disabled { opacity:.62; transform:none; box-shadow:none; }
+@media(prefers-reduced-motion:reduce) {
+  .btn-g,.btn-o,.btn-n,.cta,.btn,.submit { transition:none!important; }
+  .btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover { transform:none!important; }
+}
+</style>
 </head>
 <body>
 <header class="top">
