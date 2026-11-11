@@ -303,6 +303,29 @@ footer{background:var(--navy-deep);color:#fff}
   .hero-line>span,.hero-eyebrow,.hero-sub,.hero-cta{transform:none;opacity:1}.h-rule{transform:none}
   .reveal{opacity:1;transform:none}.wipe img{opacity:1;scale:1;translate:none}
 }
+
+/* About image: keep the photo and caption inside one visible frame */
+.about .about-visual {
+  box-sizing:border-box;
+  width:100%;
+  margin:0;
+  padding:10px;
+  overflow:hidden;
+  border:1px solid rgba(8,98,79,.38);
+  background:#fff;
+}
+.about .about-visual::before { display:none!important; }
+.about .about-visual img {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+.about .about-visual figcaption { margin:12px 2px 2px; }
+@media(max-width:700px) {
+  .about .about-visual { margin:0; padding:8px; }
+}
 </style>
 </head>
 <body>
