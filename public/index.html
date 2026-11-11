@@ -296,6 +296,54 @@ footer{background:var(--navy-deep);color:#fff}
   .fcall{position:fixed;right:16px;bottom:84px;z-index:90;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:var(--navy);color:#fff;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;box-shadow:0 12px 26px -10px rgba(22,30,66,.7)}
 }
 
+/* ===== visual refinements ===== */
+::selection{background:var(--green);color:#fff}
+
+/* hero: deeper overlay so the headline always reads, soft shadow, thin rule under the eyebrow */
+.hero::before{background:linear-gradient(180deg,rgba(22,30,66,.66),rgba(22,30,66,.2) 28%,rgba(22,30,66,.42) 62%,rgba(22,30,66,.94)),linear-gradient(90deg,rgba(32,43,89,.55),rgba(32,43,89,.06) 70%)}
+.hero-text{text-shadow:0 2px 32px rgba(10,15,40,.4)}
+.hero-eyebrow{padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.4)}
+
+/* header: solid green call-to-action so it stands out over the video */
+.navrow>.cta{background-color:var(--green);border-color:var(--green);--fill:#fff}
+.navrow>.cta:hover{color:var(--navy);border-color:#fff}
+
+/* stats: soft tinted band, icons in circles, lighter numbers */
+.stats-section{background:var(--mist);border-bottom:1px solid var(--line)}
+.stat-icon{box-sizing:content-box;width:26px;height:26px;padding:15px;margin-bottom:12px;border:1px solid var(--line);border-radius:50%;background:#fff;box-shadow:0 10px 24px -14px rgba(32,43,89,.45)}
+.stat-number{font-size:clamp(48px,5.4vw,80px)}
+
+/* about: photo depth, facts as a tidy bordered row */
+.about .about-visual{box-shadow:0 34px 60px -36px rgba(32,43,89,.5)}
+.facts{margin-top:clamp(8px,2vw,24px);background:var(--mist);border:1px solid var(--line)}
+.fact{padding:26px 28px;border-left:1px solid var(--line)}
+.fact:first-child{border-left:0}
+
+/* curriculum cards: green bar draws in on hover, gentle shade on photos */
+.card{position:relative}
+.card::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;z-index:1;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.card:hover::after{transform:scaleX(1)}
+.card-media{position:relative}
+.card-media::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(0deg,rgba(22,30,66,.35),rgba(22,30,66,0));pointer-events:none}
+
+/* philosophy: soft green glow so the navy block isn't flat */
+.phil{background:radial-gradient(1100px 520px at 88% -8%,rgba(26,162,125,.24),rgba(26,162,125,0) 62%),var(--navy)}
+
+/* gallery: captions always visible, with a slightly stronger fade for legibility */
+.grid figcaption{transform:none;padding-top:72px;background:linear-gradient(0deg,rgba(22,30,66,.9),rgba(22,30,66,0))}
+
+/* footer: green accent line */
+footer{border-top:4px solid var(--green)}
+
+@media (max-width:900px){
+  .fact:nth-child(odd){border-left:0}
+  .fact:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:520px){
+  .facts{grid-template-columns:1fr}
+  .fact,.fact:nth-child(n){border-left:0;padding:20px 22px}
+  .fact+.fact{border-top:1px solid var(--line)}
+}
 @media (hover:none){.card:hover{transform:none}.card:hover .card-media img,.grid figure:hover img,.curriculum-link:hover .thumb img{transform:none}.grid figcaption{transform:none}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
