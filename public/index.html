@@ -1213,6 +1213,61 @@ footer {
   .btn-g,.btn-o,.btn-n,.cta,.btn,.submit { transition:none!important; }
   .btn-g:hover,.btn-o:hover,.btn-n:hover,.cta:hover,.btn:hover,.submit:hover { transform:none!important; }
 }
+
+/* Curriculum navigation: simple stage buttons, with no thumbnails */
+@media(min-width:701px) {
+  .curriculum-panelwrap { width:min(560px,calc(100vw - 48px))!important; }
+  .curriculum-menu { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:12px!important; }
+  .curriculum-link {
+    display:flex!important;
+    min-height:54px;
+    align-items:center;
+    justify-content:center;
+    padding:12px!important;
+    border:1px solid rgba(32,43,89,.16)!important;
+    background:#fff!important;
+    color:var(--navy)!important;
+    text-align:center;
+    transition:background-color .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+  }
+  .curriculum-link strong {
+    color:inherit!important;
+    font-family:Inter,system-ui,sans-serif!important;
+    font-size:10px!important;
+    font-weight:600!important;
+    letter-spacing:.1em!important;
+    line-height:1.4;
+    text-transform:uppercase;
+  }
+  .curriculum-link:hover { background:var(--green)!important; border-color:var(--green)!important; color:#fff!important; }
+}
+@media(max-width:700px) {
+  .curriculum-menu { gap:7px!important; padding:8px 0 10px!important; }
+  .curriculum-link {
+    display:flex!important;
+    width:100%;
+    min-height:44px;
+    align-items:center;
+    justify-content:flex-start;
+    padding:10px 13px!important;
+    border:1px solid rgba(255,255,255,.2)!important;
+    background:rgba(255,255,255,.06)!important;
+    color:#fff!important;
+    text-align:left;
+  }
+  .curriculum-link strong {
+    color:inherit!important;
+    font-family:Inter,system-ui,sans-serif!important;
+    font-size:11px!important;
+    font-weight:600!important;
+    letter-spacing:.1em!important;
+    text-transform:uppercase;
+  }
+  .curriculum-link:hover,.curriculum-link:focus-visible { background:rgba(8,98,79,.5)!important; border-color:rgba(168,223,191,.68)!important; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .curriculum-link { transition:none!important; }
+}
 </style>
 </head>
 <body>
@@ -1233,7 +1288,7 @@ footer {
 <ul class="navlist" id="navlist">
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">About Us</button><div class="panelwrap"><div class="panel"><a class="plink" href="#about">Welcome to Royal</a><a class="plink" href="#philosophy">Our approach</a><a class="plink" href="#contact">Visit the school</a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Admissions</button><div class="panelwrap"><div class="panel"><a class="plink" href="admission.html">Apply for admission</a><a class="plink" href="admission.html#tour">Book a campus tour</a></div></div></li>
-<li class="navitem curriculum-nav"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Curriculum</button><div class="panelwrap curriculum-panelwrap"><div class="panel curriculum-menu"><a class="plink curriculum-link" href="#nursery"><img src="assets/nursery-reading-event.jpeg" alt=""><span><strong>Nursery</strong><small>Playful early learning</small></span></a><a class="plink curriculum-link" href="#primary"><img src="assets/primary-learning.jpeg" alt=""><span><strong>Primary</strong><small>Curiosity and strong foundations</small></span></a><a class="plink curriculum-link" href="#igcse"><img src="assets/secondary-graduation.jpeg" alt=""><span><strong>Secondary · IGCSE</strong><small>Pathways toward what comes next</small></span></a></div></div></li>
+<li class="navitem curriculum-nav"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Curriculum</button><div class="panelwrap curriculum-panelwrap"><div class="panel curriculum-menu"><a class="plink curriculum-link" href="#nursery"><strong>Nursery</strong></a><a class="plink curriculum-link" href="#primary"><strong>Primary</strong></a><a class="plink curriculum-link" href="#igcse"><strong>Secondary · IGCSE</strong></a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">School Life</button><div class="panelwrap"><div class="panel"><a class="plink" href="#life">Photo gallery</a><a class="plink" href="#life">Student life</a></div></div></li>
 <li class="navitem"><button class="nbtn" type="button" aria-expanded="false" aria-haspopup="true">Connect With Us</button><div class="panelwrap"><div class="panel"><a class="plink" href="#contact">Contact Royal</a><a class="plink" href="tel:+211927330101">Call +211 927 330 101</a><a class="plink" href="https://wa.me/211927330101" target="_blank" rel="noopener">WhatsApp admissions</a></div></div></li>
 <li class="mobile-tour-item"><a class="cta" href="admission.html#tour">Book a Tour</a></li>
